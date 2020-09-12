@@ -17,16 +17,16 @@ Here goes the first batch!
 
 ## Matt Stauffer - Patterns that pay off
 
-`youtube: https://www.youtube.com/watch?v=enTb2E4vEos`
+https://www.youtube.com/watch?v=enTb2E4vEos
 
 ## Jeffrey Way - Slay the Beast: Nine considerations to get your app back on track
 
-`youtube: https://www.youtube.com/watch?v=Npm5LruYA7A`
+https://www.youtube.com/watch?v=Npm5LruYA7A
 
 ## Adam Wathan - Resisting Complexity
 
-`youtube: https://www.youtube.com/watch?v=dfgtKb-VpRk`
+https://www.youtube.com/watch?v=dfgtKb-VpRk
 
 ## Adam Wathan - Cruddy by design
 
-`youtube: https://www.youtube.com/watch?v=MF0jFKvS4SI`
+https://www.youtube.com/watch?v=MF0jFKvS4SI
