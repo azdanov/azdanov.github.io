@@ -1,9 +1,7 @@
 language: node_js
 node_js:
   - 10
-before_script:
-  - npm install @11ty/eleventy -g
-script: eleventy
+script: npm run build
 deploy:
   local-dir: _site
   provider: pages
