@@ -7,6 +7,6 @@ eleventyNavigation:
   order: 3
 ---
 
-I am a person that writes stuff.
+Hey! My name is Anton Zdanov and I write software in different languages, frameworks and libraries.
 
-This blog template is based on [eleventy-high-performance-blog](https://www.industrialempathy.com/posts/eleventy-high-performance-blog/) which itself is based on [eleventy-base-blog](https://github.com/11ty/eleventy-base-blog).
+The most common ones are Java, Javascript, Typescript, Spring, Angular, VueJS, etc.

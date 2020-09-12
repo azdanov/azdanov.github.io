@@ -22,26 +22,26 @@
 // Adopted from
 // https://github.com/ampproject/amp-toolbox/blob/0c8755016ae825b11b63b98be83271fd14cc0486/packages/optimizer/lib/transformers/AddBlurryImagePlaceholders.js
 
-const { promisify } = require("util");
-const sharp = require("sharp");
-const sizeOf = promisify(require("image-size"));
-const DatauriParser = require("datauri/parser");
+const { promisify } = require('util');
+const sharp = require('sharp');
+const sizeOf = promisify(require('image-size'));
+const DatauriParser = require('datauri/parser');
 const parser = new DatauriParser();
-const readFile = promisify(require("fs").readFile);
-const writeFile = promisify(require("fs").writeFile);
-const exists = promisify(require("fs").exists);
+const readFile = promisify(require('fs').readFile);
+const writeFile = promisify(require('fs').writeFile);
+const exists = promisify(require('fs').exists);
 
 const PIXEL_TARGET = 60;
 
 const ESCAPE_TABLE = {
-  "#": "%23",
-  "%": "%25",
-  ":": "%3A",
-  "<": "%3C",
-  ">": "%3E",
+  '#': '%23',
+  '%': '%25',
+  ':': '%3A',
+  '<': '%3C',
+  '>': '%3E',
   '"': "'",
 };
-const ESCAPE_REGEX = new RegExp(Object.keys(ESCAPE_TABLE).join("|"), "g");
+const ESCAPE_REGEX = new RegExp(Object.keys(ESCAPE_TABLE).join('|'), 'g');
 function escaper(match) {
   return ESCAPE_TABLE[match];
 }
@@ -58,12 +58,9 @@ async function getCachedDataURI(src) {
 async function getDataURI(src) {
   const info = await sizeOf(src);
   const imgDimension = getBitmapDimensions_(info.width, info.height);
-  const buffer = await sharp(src)
-    .resize(imgDimension.width, imgDimension.height)
-    .png()
-    .toBuffer();
+  const buffer = await sharp(src).resize(imgDimension.width, imgDimension.height).png().toBuffer();
   const result = {
-    src: parser.format(".png", buffer).content,
+    src: parser.format('.png', buffer).content,
     width: info.width,
     height: info.height,
   };
@@ -91,11 +88,11 @@ function getBitmapDimensions_(imgWidth, imgHeight) {
 }
 
 module.exports = async function (src) {
-  const filename = "_site/" + src;
-  const cachedName = filename + ".blurred";
+  const filename = '_site/' + src;
+  const cachedName = filename + '.blurred';
   if (await exists(cachedName)) {
     return readFile(cachedName, {
-      encoding: "utf-8",
+      encoding: 'utf-8',
     });
   }
   // We wrap the blurred image in a SVG to avoid rasterizing the filter on each layout.
@@ -117,11 +114,11 @@ module.exports = async function (src) {
 
   // Optimizes dataURI length by deleting line breaks, and
   // removing unnecessary spaces.
-  svg = svg.replace(/\s+/g, " ");
-  svg = svg.replace(/> </g, "><");
+  svg = svg.replace(/\s+/g, ' ');
+  svg = svg.replace(/> </g, '><');
   svg = svg.replace(ESCAPE_REGEX, escaper);
 
-  console.log(src, "[SUCCESS]");
+  console.log(src, '[SUCCESS]');
   const URI = `data:image/svg+xml;charset=utf-8,${svg}`;
   await writeFile(cachedName, URI);
   return URI;

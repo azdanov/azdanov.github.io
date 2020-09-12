@@ -19,15 +19,15 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-const minify = require("html-minifier").minify;
-const AmpOptimizer = require("@ampproject/toolbox-optimizer");
+const minify = require('html-minifier').minify;
+const AmpOptimizer = require('@ampproject/toolbox-optimizer');
 const ampOptimizer = AmpOptimizer.create({
   blurredPlaceholders: true,
-  imageBasePath: "./_site/",
+  imageBasePath: './_site/',
   //verbose: true,
 });
-const PurgeCSS = require("purgecss").PurgeCSS;
-const csso = require("csso");
+const PurgeCSS = require('purgecss').PurgeCSS;
+const csso = require('csso');
 
 /**
  * Inlines the CSS.
@@ -41,21 +41,21 @@ const purifyCss = async (rawContent, outputPath) => {
   let content = rawContent;
   if (
     outputPath &&
-    outputPath.endsWith(".html") &&
+    outputPath.endsWith('.html') &&
     !isAmp(content) &&
     !/data-style-override/.test(content)
   ) {
-    let before = require("fs").readFileSync("css/main.css", {
-      encoding: "utf-8",
+    let before = require('fs').readFileSync('css/main.css', {
+      encoding: 'utf-8',
     });
 
-    before = before.replace(/@font-face {/g, "@font-face {font-display:swap;");
+    before = before.replace(/@font-face {/g, '@font-face {font-display:swap;');
 
     const purged = await new PurgeCSS().purge({
       content: [
         {
           raw: rawContent,
-          extension: "html",
+          extension: 'html',
         },
       ],
       css: [
@@ -76,14 +76,14 @@ const purifyCss = async (rawContent, outputPath) => {
     const after = csso.minify(purged[0].css).css;
     //console.log("CSS reduction", before.length - after.length);
 
-    content = content.replace("</head>", `<style>${after}</style></head>`);
+    content = content.replace('</head>', `<style>${after}</style></head>`);
   }
   return content;
 };
 
 const minifyHtml = (rawContent, outputPath) => {
   let content = rawContent;
-  if (outputPath && outputPath.endsWith(".html") && !isAmp(content)) {
+  if (outputPath && outputPath.endsWith('.html') && !isAmp(content)) {
     content = minify(content, {
       removeAttributeQuotes: true,
       collapseBooleanAttributes: true,
@@ -101,7 +101,7 @@ const minifyHtml = (rawContent, outputPath) => {
 
 const optimizeAmp = async (rawContent, outputPath) => {
   let content = rawContent;
-  if (outputPath && outputPath.endsWith(".html") && isAmp(content)) {
+  if (outputPath && outputPath.endsWith('.html') && isAmp(content)) {
     content = await ampOptimizer.transformHtml(content);
   }
   return content;
@@ -110,9 +110,9 @@ const optimizeAmp = async (rawContent, outputPath) => {
 module.exports = {
   initArguments: {},
   configFunction: async (eleventyConfig, pluginOptions = {}) => {
-    eleventyConfig.addTransform("purifyCss", purifyCss);
-    eleventyConfig.addTransform("minifyHtml", minifyHtml);
-    eleventyConfig.addTransform("optimizeAmp", optimizeAmp);
+    eleventyConfig.addTransform('purifyCss', purifyCss);
+    eleventyConfig.addTransform('minifyHtml', minifyHtml);
+    eleventyConfig.addTransform('optimizeAmp', optimizeAmp);
   },
 };
 

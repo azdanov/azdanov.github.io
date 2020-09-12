@@ -19,12 +19,12 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-const { promisify } = require("util");
-const readFile = promisify(require("fs").readFile);
-const writeFile = promisify(require("fs").writeFile);
-const sharp = require("sharp");
-const wasm_avif = require("@saschazar/wasm-avif");
-const defaultOptions = require("@saschazar/wasm-avif/options");
+const { promisify } = require('util');
+const readFile = promisify(require('fs').readFile);
+const writeFile = promisify(require('fs').writeFile);
+const sharp = require('sharp');
+const wasm_avif = require('@saschazar/wasm-avif');
+const defaultOptions = require('@saschazar/wasm-avif/options');
 
 module.exports = async function (inputFilename, outputFilename, targetWidth) {
   defaultOptions.minQuantizer = 33;
@@ -32,17 +32,14 @@ module.exports = async function (inputFilename, outputFilename, targetWidth) {
   defaultOptions.minQuantizerAlpha = 33;
   defaultOptions.maxQuantizerAlpha = 63;
 
-  const inputInfo = await sharp(inputFilename)
-    .resize(targetWidth)
-    .raw()
-    .toBuffer({
-      resolveWithObject: true,
-    });
+  const inputInfo = await sharp(inputFilename).resize(targetWidth).raw().toBuffer({
+    resolveWithObject: true,
+  });
   const input = inputInfo.data;
   const info = inputInfo.info;
 
   console.log(
-    "Encoding avif image. If this is slow, consid caching images in git with ./persistimages.sh"
+    'Encoding avif image. If this is slow, consid caching images in git with ./persistimages.sh',
   );
 
   // Initialize the WebAssembly Module
@@ -56,7 +53,7 @@ module.exports = async function (inputFilename, outputFilename, targetWidth) {
           info.height,
           info.channels,
           defaultOptions,
-          chroma
+          chroma,
         ); // encode image data and return a new Uint8Array
         this.free(); // clean up memory after encoding is done
         resolve(r);

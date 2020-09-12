@@ -19,7 +19,7 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-const metadata = require("./metadata.json");
+const metadata = require('./metadata.json');
 
 module.exports = function () {
   let id = metadata.googleAnalyticsId;

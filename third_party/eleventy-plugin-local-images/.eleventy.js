@@ -1,16 +1,16 @@
-const fs = require("fs-extra");
-const path = require("path");
-const { JSDOM } = require("jsdom");
-const fetch = require("node-fetch");
-const sh = require("shorthash");
-const fileType = require("file-type");
-const metadata = require("../../_data/metadata.json");
+const fs = require('fs-extra');
+const path = require('path');
+const { JSDOM } = require('jsdom');
+const fetch = require('node-fetch');
+const sh = require('shorthash');
+const fileType = require('file-type');
+const metadata = require('../../_data/metadata.json');
 
-let config = { distPath: "_site", verbose: false, attribute: "src" };
+let config = { distPath: '_site', verbose: false, attribute: 'src' };
 
 const downloadImage = async (path) => {
   if (config.verbose) {
-    console.log("eleventy-plugin-local-images: Attempting to copy " + path);
+    console.log('eleventy-plugin-local-images: Attempting to copy ' + path);
   }
 
   try {
@@ -41,17 +41,17 @@ const getFileType = (filename, buffer) => {
   }
 };
 
-const urlJoin = (a, b) => `${a.replace(/\/$/, "")}/${b.replace(/^\//, "")}`;
+const urlJoin = (a, b) => `${a.replace(/\/$/, '')}/${b.replace(/^\//, '')}`;
 
 const processImage = async (img) => {
   await Promise.all([
-    processImageAttr(img, "src"),
-    processImageAttr(img, "poster"),
-    processImageAttr(img, "content"),
-    processImageAttr(img, "publisher-logo-src"),
-    processImageAttr(img, "poster-portrait-src"),
-    processImageAttr(img, "poster-square-src"),
-    processImageAttr(img, "poster-landscape-src"),
+    processImageAttr(img, 'src'),
+    processImageAttr(img, 'poster'),
+    processImageAttr(img, 'content'),
+    processImageAttr(img, 'publisher-logo-src'),
+    processImageAttr(img, 'poster-portrait-src'),
+    processImageAttr(img, 'poster-square-src'),
+    processImageAttr(img, 'poster-landscape-src'),
   ]);
 };
 
@@ -64,10 +64,10 @@ const processImageAttr = async (img, attribute) => {
   if (external.test(imgPath)) {
     try {
       // get the filname from the path
-      const pathComponents = imgPath.split("/");
+      const pathComponents = imgPath.split('/');
 
       // break off cache busting string if there is one
-      let filename = pathComponents[pathComponents.length - 1].split("?");
+      let filename = pathComponents[pathComponents.length - 1].split('?');
       filename = filename[0];
 
       // generate a unique short hash based on the original file path
@@ -92,9 +92,7 @@ const processImageAttr = async (img, attribute) => {
           // save the file out, and log it to the console
           await fs.outputFile(outputFilePath, imgBuffer);
           if (config.verbose) {
-            console.log(
-              `eleventy-plugin-local-images: Saving ${filename} to ${outputFilePath}`
-            );
+            console.log(`eleventy-plugin-local-images: Saving ${filename} to ${outputFilePath}`);
           }
         }
       }
@@ -102,7 +100,7 @@ const processImageAttr = async (img, attribute) => {
       if (hashedFilename) {
         // Update the image with the new file path
         let href = urlJoin(assetPath, hashedFilename);
-        if (attribute == "content") {
+        if (attribute == 'content') {
           href = `${metadata.url}${href}`;
         }
         img.setAttribute(attribute, href);
@@ -114,10 +112,10 @@ const processImageAttr = async (img, attribute) => {
 };
 
 const grabRemoteImages = async (rawContent, outputPath) => {
-  let { selector = "img" } = config;
+  let { selector = 'img' } = config;
   let content = rawContent;
 
-  if (outputPath && outputPath.endsWith(".html")) {
+  if (outputPath && outputPath.endsWith('.html')) {
     const dom = new JSDOM(content);
     const images = [...dom.window.document.querySelectorAll(selector)];
 
@@ -137,11 +135,9 @@ module.exports = {
 
     // check the required config is present
     if (!config.assetPath || !config.distPath) {
-      throw new Error(
-        "eleventy-plugin-local-images requires that assetPath and distPath are set"
-      );
+      throw new Error('eleventy-plugin-local-images requires that assetPath and distPath are set');
     }
 
-    eleventyConfig.addTransform("localimages", grabRemoteImages);
+    eleventyConfig.addTransform('localimages', grabRemoteImages);
   },
 };

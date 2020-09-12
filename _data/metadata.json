@@ -1,25 +1,25 @@
 {
-  "title": "Title of the website. Update me.",
-  "url": "https://update-me.com",
-  "domain": "update-me.com",
-  "description": "Description of the website. Update me.",
-  "genre": "Insert a schema.org genre",
-  "googleAnalyticsId": "GA ID. Update me",
+  "title": "<azdanov/>",
+  "url": "https://azdanov.js.org",
+  "domain": "azdanov.js.org",
+  "description": "A place to share knowledge about programming and related things.",
+  "genre": "Software Development",
+  "googleAnalyticsId": "UA-177829586-1",
   "feed": {
-    "subtitle": "Subtitle. Update me.",
+    "subtitle": "Anton Zdanov's place",
     "filename": "feed.xml",
     "path": "/feed/feed.xml",
-    "id": "https://update-me.com"
+    "id": "https://azdanov.js.org"
   },
   "jsonfeed": {
     "path": "/feed/feed.json",
-    "url": "https://update-me.com/feed/feed.json"
+    "url": "https://azdanov.js.org/feed/feed.json"
   },
   "author": {
-    "name": "Author Name. Update me.",
-    "twitterHandle": "update_me"
+    "name": "Anton Zdanov",
+    "twitterHandle": "thezdanov"
   },
   "publisher": {
-    "name": "Publisher name. Update me."
+    "name": "Anton Zdanov"
   }
 }

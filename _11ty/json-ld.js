@@ -19,8 +19,8 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-const { JSDOM } = require("jsdom");
-const BASE_URL = require("../_data/metadata.json").url;
+const { JSDOM } = require('jsdom');
+const BASE_URL = require('../_data/metadata.json').url;
 
 /**
  * Validate json-ld being valid JSON and add the document images to the JSON.
@@ -29,18 +29,14 @@ const BASE_URL = require("../_data/metadata.json").url;
 const jsonLd = (rawContent, outputPath) => {
   let content = rawContent;
 
-  if (outputPath && outputPath.endsWith(".html")) {
+  if (outputPath && outputPath.endsWith('.html')) {
     const dom = new JSDOM(content);
-    const jsonLd = dom.window.document.querySelector(
-      "script[type='application/ld+json']"
-    );
+    const jsonLd = dom.window.document.querySelector("script[type='application/ld+json']");
     if (!jsonLd) {
       return content;
     }
 
-    const images = [
-      ...dom.window.document.querySelectorAll("main img,amp-img"),
-    ];
+    const images = [...dom.window.document.querySelectorAll('main img,amp-img')];
     try {
       const obj = JSON.parse(jsonLd.textContent);
 
@@ -60,6 +56,6 @@ const jsonLd = (rawContent, outputPath) => {
 module.exports = {
   initArguments: {},
   configFunction: async (eleventyConfig, pluginOptions = {}) => {
-    eleventyConfig.addTransform("jsonLd", jsonLd);
+    eleventyConfig.addTransform('jsonLd', jsonLd);
   },
 };

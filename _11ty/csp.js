@@ -19,9 +19,9 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-const { JSDOM } = require("jsdom");
-const cspHashGen = require("csp-hash-generator");
-const syncPackage = require("browser-sync/package.json");
+const { JSDOM } = require('jsdom');
+const cspHashGen = require('csp-hash-generator');
+const syncPackage = require('browser-sync/package.json');
 
 /**
  * Substitute the magic `HASHES` string in the CSP with the actual values of the
@@ -34,10 +34,10 @@ const syncPackage = require("browser-sync/package.json");
 const AUTO_RELOAD_SCRIPTS = [
   quote(
     cspHashGen(
-      "//<![CDATA[\n    document.write(\"<script async src='/browser-sync/browser-sync-client.js?v=" +
+      '//<![CDATA[\n    document.write("<script async src=\'/browser-sync/browser-sync-client.js?v=' +
         syncPackage.version +
-        '\'><\\/script>".replace("HOST", location.hostname));\n//]]>'
-    )
+        '\'><\\/script>".replace("HOST", location.hostname));\n//]]>',
+    ),
   ),
 ];
 
@@ -48,31 +48,24 @@ function quote(str) {
 const addCspHash = async (rawContent, outputPath) => {
   let content = rawContent;
 
-  if (outputPath && outputPath.endsWith(".html")) {
+  if (outputPath && outputPath.endsWith('.html')) {
     const dom = new JSDOM(content);
-    const cspAble = [
-      ...dom.window.document.querySelectorAll("script[csp-hash]"),
-    ];
+    const cspAble = [...dom.window.document.querySelectorAll('script[csp-hash]')];
 
     const hashes = cspAble.map((element) => {
       const hash = cspHashGen(element.textContent);
-      element.setAttribute("csp-hash", hash);
+      element.setAttribute('csp-hash', hash);
       return quote(hash);
     });
     if (isDevelopmentMode()) {
       hashes.push.apply(hashes, AUTO_RELOAD_SCRIPTS);
     }
 
-    const csp = dom.window.document.querySelector(
-      "meta[http-equiv='Content-Security-Policy']"
-    );
+    const csp = dom.window.document.querySelector("meta[http-equiv='Content-Security-Policy']");
     if (!csp) {
       return content;
     }
-    csp.setAttribute(
-      "content",
-      csp.getAttribute("content").replace("HASHES", hashes.join(" "))
-    );
+    csp.setAttribute('content', csp.getAttribute('content').replace('HASHES', hashes.join(' ')));
 
     content = dom.serialize();
   }
@@ -83,7 +76,7 @@ const addCspHash = async (rawContent, outputPath) => {
 module.exports = {
   initArguments: {},
   configFunction: async (eleventyConfig, pluginOptions = {}) => {
-    eleventyConfig.addTransform("csp", addCspHash);
+    eleventyConfig.addTransform('csp', addCspHash);
   },
 };
 
