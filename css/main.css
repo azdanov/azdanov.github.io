@@ -19,6 +19,12 @@ main img {
   content-visibility: auto;
 }
 
+/* "Content-visibility: auto" move the images over the other elements
+   Set z-index to keep the nav over the rasterized images */
+header nav {
+  z-index: 1;
+}
+
 /*! purgecss start ignore */
 :root {
   --main-width: calc(100vw - 3em);
