@@ -6,6 +6,7 @@
 
 [[plugins]]
   package = "@netlify/plugin-functions-install-core"
+  package = "netlify-plugin-submit-sitemap"
 
 [[headers]]
   for = "*.avif"
