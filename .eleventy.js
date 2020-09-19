@@ -50,6 +50,7 @@ const pluginSyntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight');
 const pluginNavigation = require('@11ty/eleventy-navigation');
 const markdownIt = require('markdown-it');
 const markdownItAnchor = require('markdown-it-anchor');
+const markdownItLinkAttributes = require('markdown-it-link-attributes');
 const localImages = require('./third_party/eleventy-plugin-local-images/.eleventy.js');
 const CleanCSS = require('clean-css');
 const GA_ID = require('./_data/metadata.json').googleAnalyticsId;
@@ -128,15 +129,23 @@ module.exports = (eleventyConfig) => {
   eleventyConfig.setUseGitIgnore(false);
 
   /* Markdown Overrides */
-  let markdownLibrary = markdownIt({
+  const markdownLibrary = markdownIt({
     html: true,
     breaks: true,
     linkify: true,
-  }).use(markdownItAnchor, {
-    permalink: true,
-    permalinkClass: 'direct-link',
-    permalinkSymbol: '#',
-  });
+  })
+    .use(markdownItAnchor, {
+      permalink: true,
+      permalinkClass: 'direct-link',
+      permalinkSymbol: '#',
+    })
+    .use(markdownItLinkAttributes, {
+      pattern: /^https?:\/\//,
+      attrs: {
+        target: '_blank',
+        rel: 'noopener',
+      },
+    });
   eleventyConfig.setLibrary('md', markdownLibrary);
 
   // Browsersync Overrides

@@ -54,6 +54,7 @@
     "luxon": "^1.25.0",
     "markdown-it": "^11.0.1",
     "markdown-it-anchor": "^5.2.5",
+    "markdown-it-link-attributes": "^3.0.0",
     "node-fetch": "^2.6.1",
     "pre-commit": "^1.2.2",
     "pre-push": "^0.1.1",
