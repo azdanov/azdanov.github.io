@@ -64,7 +64,7 @@ function proxyToGoogleAnalytics(event) {
   });
 }
 
-exports.handler = function (event, context, callback) {
+exports.handler = (event, context, callback) => {
   const origin = event.headers['origin'] || event.headers['Origin'] || '';
   console.log(`Received ${event.httpMethod} request from, origin: ${origin}`);
 

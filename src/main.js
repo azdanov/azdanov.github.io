@@ -21,7 +21,7 @@
 
 const exposed = {};
 if (location.search) {
-  var a = document.createElement('a');
+  const a = document.createElement('a');
   a.href = location.href;
   a.search = '';
   history.replaceState(null, null, a.href);
@@ -36,7 +36,7 @@ function tweet(anchor) {
 expose('tweet', tweet);
 
 function share(anchor) {
-  var url = anchor.getAttribute('href');
+  const url = anchor.getAttribute('href');
   event.preventDefault();
   if (navigator.share) {
     navigator.share({
@@ -52,7 +52,7 @@ function share(anchor) {
 expose('share', share);
 
 function message(msg) {
-  var dialog = document.getElementById('message');
+  const dialog = document.getElementById('message');
   dialog.textContent = msg;
   dialog.setAttribute('open', '');
   setTimeout(function () {
@@ -67,7 +67,7 @@ function prefetch(e) {
   if (e.target.origin != location.origin) {
     return;
   }
-  var l = document.createElement('link');
+  const l = document.createElement('link');
   l.rel = 'prefetch';
   l.href = e.target.href;
   document.head.appendChild(l);
@@ -93,7 +93,7 @@ window.ga =
 ga.l = +new Date();
 ga('create', GA_ID, 'auto');
 ga('set', 'transport', 'beacon');
-var timeout = setTimeout(
+const timeout = setTimeout(
   (onload = function () {
     clearTimeout(timeout);
     ga('send', 'pageview');
@@ -101,9 +101,10 @@ var timeout = setTimeout(
   1000,
 );
 
-var ref = +new Date();
+let ref = +new Date();
+
 function ping(event) {
-  var now = +new Date();
+  const now = +new Date();
   if (now - ref < 1000) {
     return;
   }
@@ -120,7 +121,7 @@ addEventListener('visibilitychange', ping);
 addEventListener(
   'click',
   function (e) {
-    var button = e.target.closest('button');
+    const button = e.target.closest('button');
     if (!button) {
       return;
     }
@@ -132,12 +133,12 @@ addEventListener(
   },
   true,
 );
-var selectionTimeout;
+let selectionTimeout;
 addEventListener(
   'selectionchange',
   function () {
     clearTimeout(selectionTimeout);
-    var text = String(document.getSelection()).trim();
+    const text = String(document.getSelection()).trim();
     if (text.split(/[\s\n\r]+/).length < 3) {
       return;
     }
@@ -153,10 +154,11 @@ addEventListener(
 );
 
 if (window.ResizeObserver && document.querySelector('header nav #nav')) {
-  var progress = document.getElementById('reading-progress');
+  const progress = document.getElementById('reading-progress');
 
-  var timeOfLastScroll = 0;
-  var requestedAniFrame = false;
+  let timeOfLastScroll = 0;
+  let requestedAniFrame = false;
+
   function scroll() {
     if (!requestedAniFrame) {
       requestAnimationFrame(updateProgress);
@@ -166,11 +168,15 @@ if (window.ResizeObserver && document.querySelector('header nav #nav')) {
   }
   addEventListener('scroll', scroll);
 
-  var winHeight = 1000;
-  var bottom = 10000;
+  let winHeight = 1000;
+  let bottom = 10000;
+
   function updateProgress() {
     requestedAniFrame = false;
-    var percent = Math.min((document.scrollingElement.scrollTop / (bottom - winHeight)) * 100, 100);
+    const percent = Math.min(
+      (document.scrollingElement.scrollTop / (bottom - winHeight)) * 100,
+      100,
+    );
     progress.style.transform = `translate(-${100 - percent}vw, 0)`;
     if (Date.now() - timeOfLastScroll < 3000) {
       requestAnimationFrame(updateProgress);

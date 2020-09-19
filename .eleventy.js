@@ -52,9 +52,9 @@ const markdownIt = require('markdown-it');
 const markdownItAnchor = require('markdown-it-anchor');
 const localImages = require('./third_party/eleventy-plugin-local-images/.eleventy.js');
 const CleanCSS = require('clean-css');
-const GA_ID = require("./_data/metadata.json").googleAnalyticsId;
+const GA_ID = require('./_data/metadata.json').googleAnalyticsId;
 
-module.exports = function (eleventyConfig) {
+module.exports = (eleventyConfig) => {
   eleventyConfig.addPlugin(pluginRss);
   eleventyConfig.addPlugin(pluginSyntaxHighlight);
   eleventyConfig.addPlugin(pluginNavigation);
@@ -73,7 +73,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(require('./_11ty/csp.js'));
   eleventyConfig.setDataDeepMerge(true);
   eleventyConfig.addLayoutAlias('post', 'layouts/post.njk');
-  eleventyConfig.addNunjucksAsyncFilter('addHash', function (absolutePath, callback) {
+  eleventyConfig.addNunjucksAsyncFilter('addHash', (absolutePath, callback) => {
     readFile(`_site${absolutePath}`, {
       encoding: 'utf-8',
     })
@@ -86,18 +86,14 @@ module.exports = function (eleventyConfig) {
       .catch((error) => callback(error));
   });
 
-  eleventyConfig.addFilter('lastModifiedDate', function (filename) {
+  eleventyConfig.addFilter('lastModifiedDate', (filename) => {
     const stats = fs.statSync(filename);
     return stats.mtime; // Date
   });
 
-  eleventyConfig.addFilter('encodeURIComponent', function (str) {
-    return encodeURIComponent(str);
-  });
+  eleventyConfig.addFilter('encodeURIComponent', (str) => encodeURIComponent(str));
 
-  eleventyConfig.addFilter('cssmin', function (code) {
-    return new CleanCSS({}).minify(code).styles;
-  });
+  eleventyConfig.addFilter('cssmin', (code) => new CleanCSS({}).minify(code).styles);
 
   eleventyConfig.addFilter('readableDate', (dateObj) => {
     return DateTime.fromJSDate(dateObj, { zone: 'utc' }).toFormat('dd LLL yyyy');
@@ -119,7 +115,7 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addPassthroughCopy('img');
   eleventyConfig.addPassthroughCopy('css');
-  eleventyConfig.addPassthroughCopy(GA_ID ? "js" : "js/*[!cached].*");
+  eleventyConfig.addPassthroughCopy(GA_ID ? 'js' : 'js/*[!cached].*');
   eleventyConfig.addPassthroughCopy('fonts');
   eleventyConfig.addPassthroughCopy('_headers');
 
@@ -146,7 +142,7 @@ module.exports = function (eleventyConfig) {
   // Browsersync Overrides
   eleventyConfig.setBrowserSyncConfig({
     callbacks: {
-      ready: function (err, browserSync) {
+      ready: (err, browserSync) => {
         const content_404 = fs.readFileSync('_site/404.html');
 
         browserSync.addMiddleware('*', (req, res) => {

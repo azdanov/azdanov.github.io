@@ -117,5 +117,5 @@ module.exports = {
 };
 
 function isAmp(content) {
-  return /\<html amp/i.test(content);
+  return /<html amp/i.test(content);
 }

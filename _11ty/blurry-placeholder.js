@@ -87,7 +87,7 @@ function getBitmapDimensions_(imgWidth, imgHeight) {
   return { width: Math.round(bitmapWidth), height: Math.round(bitmapHeight) };
 }
 
-module.exports = async function (src) {
+module.exports = async (src) => {
   const filename = '_site/' + src;
   const cachedName = filename + '.blurred';
   if (await exists(cachedName)) {

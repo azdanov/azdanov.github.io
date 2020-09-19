@@ -36,7 +36,7 @@ const extension = {
   avif: 'avif',
 };
 
-module.exports = async function srcset(filename, format) {
+module.exports = async (filename, format) => {
   const names = await Promise.all(widths.map((w) => resize(filename, w, format)));
   return names.map((n, i) => `${n} ${widths[i]}w`).join(', ');
 };

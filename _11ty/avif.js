@@ -26,7 +26,7 @@ const sharp = require('sharp');
 const wasm_avif = require('@saschazar/wasm-avif');
 const defaultOptions = require('@saschazar/wasm-avif/options');
 
-module.exports = async function (inputFilename, outputFilename, targetWidth) {
+module.exports = async (inputFilename, outputFilename, targetWidth) => {
   defaultOptions.minQuantizer = 33;
   defaultOptions.maxQuantizer = 63;
   defaultOptions.minQuantizerAlpha = 33;
