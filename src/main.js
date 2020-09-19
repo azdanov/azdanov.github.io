@@ -28,7 +28,7 @@ if (location.search) {
 }
 
 function tweet_(url) {
-  open('https://twitter.com/intent/tweet?url=' + encodeURIComponent(url), '_blank');
+  open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}`, '_blank');
 }
 function tweet(anchor) {
   tweet_(anchor.getAttribute('href'));
