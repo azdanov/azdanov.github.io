@@ -46,6 +46,8 @@ const CSP = {
     ['style-src', quote('unsafe-inline')],
     // Images may also come from data-URIs.
     ['img-src', SELF, 'data:'],
+    // Allow iframes for YouTube
+    ['frame-src', 'https://www.youtube.com/embed/', 'https://www.youtube-nocookie.com/embed/'],
   ]),
 };
 

@@ -54,11 +54,14 @@ const markdownItLinkAttributes = require('markdown-it-link-attributes');
 const localImages = require('./third_party/eleventy-plugin-local-images/.eleventy.js');
 const CleanCSS = require('clean-css');
 const GA_ID = require('./_data/metadata.json').googleAnalyticsId;
+const embedYouTube = require('eleventy-plugin-youtube-embed');
 
 module.exports = (eleventyConfig) => {
   eleventyConfig.addPlugin(pluginRss);
   eleventyConfig.addPlugin(pluginSyntaxHighlight);
   eleventyConfig.addPlugin(pluginNavigation);
+  eleventyConfig.addPlugin(embedYouTube);
+
 
   eleventyConfig.addPlugin(localImages, {
     distPath: '_site',
