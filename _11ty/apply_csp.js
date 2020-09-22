@@ -26,7 +26,7 @@ const syncPackage = require('browser-sync/package.json');
 /**
  * Substitute the magic `HASHES` string in the CSP with the actual values of the
  * loaded JS files.
- * The ACTUAL CSP is configured in `_data/csp.js`.
+ * The ACTUAL CSP is configured in `_data/apply_csp.js`.
  */
 
 // Allow the auto-reload script in local dev. Would be good to get rid of this magic

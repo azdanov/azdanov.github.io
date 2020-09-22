@@ -60,8 +60,7 @@ module.exports = (eleventyConfig) => {
   eleventyConfig.addPlugin(pluginRss);
   eleventyConfig.addPlugin(pluginSyntaxHighlight);
   eleventyConfig.addPlugin(pluginNavigation);
-  eleventyConfig.addPlugin(embedYouTube);
-
+  eleventyConfig.addPlugin(embedYouTube, { lazy: true });
 
   eleventyConfig.addPlugin(localImages, {
     distPath: '_site',
@@ -74,7 +73,7 @@ module.exports = (eleventyConfig) => {
   eleventyConfig.addPlugin(require('./_11ty/img-dim.js'));
   eleventyConfig.addPlugin(require('./_11ty/json-ld.js'));
   eleventyConfig.addPlugin(require('./_11ty/optimize-html.js'));
-  eleventyConfig.addPlugin(require('./_11ty/csp.js'));
+  eleventyConfig.addPlugin(require('./_11ty/apply_csp.js'));
   eleventyConfig.setDataDeepMerge(true);
   eleventyConfig.addLayoutAlias('post', 'layouts/post.njk');
   eleventyConfig.addNunjucksAsyncFilter('addHash', (absolutePath, callback) => {

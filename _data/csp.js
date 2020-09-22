@@ -22,15 +22,8 @@
 /**
  * Provides the default CSP.
  * Inline scripts must have the `csp-hash` attribute to be allowed.
+ * For more info see https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP
  */
-
-function quote(str) {
-  return `'${str}'`;
-}
-
-function serialize(csp) {
-  return csp.map((src) => src.join(' ')).join(';');
-}
 
 const SELF = quote('self');
 
@@ -41,7 +34,7 @@ const CSP = {
     // No plugins
     ['object-src', quote('none')],
     // Script from same-origin and inline-hashes.
-    ['script-src', SELF, /* Replaced by csp.js plugin */ 'HASHES'],
+    ['script-src', SELF, /* Replaced by apply_csp.js plugin */ 'HASHES'],
     // Inline CSS is allowed.
     ['style-src', quote('unsafe-inline')],
     // Images may also come from data-URIs.
@@ -50,5 +43,15 @@ const CSP = {
     ['frame-src', 'https://www.youtube.com/embed/', 'https://www.youtube-nocookie.com/embed/'],
   ]),
 };
+
+// Quotes CSP "keywords" like `none` or `self`. This function does very little
+// but reads better than the inlined contents because of the nested quotes.
+function quote(str) {
+  return `'${str}'`;
+}
+
+function serialize(csp) {
+  return csp.map((src) => src.join(' ')).join(';');
+}
 
 module.exports = () => CSP;
