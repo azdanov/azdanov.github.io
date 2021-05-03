@@ -29,3 +29,7 @@ HUGO_VERSION = "0.83.0"
 [context.next.environment]
 HUGO_ENABLEGITINFO = "true"
 
+[[headers]]
+for = "/*"
+[headers.values]
+Permissions-Policy = "interest-cohort=()"
