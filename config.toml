@@ -111,7 +111,10 @@ copyright = true
 author = true
 
 topText = []
-bottomText = ["Powered by <a href=\"http://gohugo.io\">Hugo</a>"]
+bottomText = [
+    "Powered by <a href=\"http://gohugo.io\">Hugo</a>",
+    "<a href=\"https://github.com/rhazdon/hugo-theme-hello-friend-ng\">Hello Friend NG</a>",
+]
 
 # Colors for favicons
 #
