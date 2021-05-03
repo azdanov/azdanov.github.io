@@ -25,7 +25,7 @@ buildExpired = false
 canonifyURLs = true
 
 enableRobotsTXT = true
-enableGitInfo = false
+enableGitInfo = true
 enableEmoji = true
 enableMissingTranslationPlaceholders = false
 disableRSS = false
@@ -69,7 +69,7 @@ homeSubtitle = "Full Stack Developer"
 
 # Prefix of link to the git commit detail page. GitInfo must be enabled.
 #
-# gitUrl = ""
+gitUrl = "https://github.com/azdanov/azdanov.github.io/commit/"
 
 # Set disableReadOtherPosts to true in order to hide the links to other posts.
 #
