@@ -11,7 +11,7 @@ tags:
 
 When using Postgres in docker-compose sometimes I have a need to create multiple databases for a demo project, but sadly only a `POSTGRES_DB` environment variable is available for a single database.
 
-Luckily it's possible to define an initialization script that can help us out.
+Luckily it's possible to define an initialization script that can help us out. The only inconvenience is in mounting a whole directory, since there is no easy way to mount a single file in Docker.
 
 Here's how my `docker-compose.yml` looks:
 
@@ -34,7 +34,7 @@ services:
       - POSTGRES_MULTIPLE_DATABASES=accounts,bills,deposits
 ```
 
-Now inside `pg-init-scripts` there is this script:
+Now inside `pg-init-scripts` directory there is a script `create_dbs.sh`:
 
 - Inside the script `POSTGRES_USER` is used as root user
 - While `POSTGRES_MULTIPLE_DATABASES` is split on `,`
