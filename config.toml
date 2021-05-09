@@ -57,7 +57,7 @@ dateformNumTime = "2006-01-02 15:04"
 # 
 description = "Anton Ždanov's blog"
 keywords = ""
-images = ["/apple-touch-icon.png"]
+images = ["/img/study.png"]
 
 # Index page params.
 #
