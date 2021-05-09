@@ -173,12 +173,12 @@ url = "https://www.linkedin.com/in/thezdanov"
 [languages.en]
 subtitle = ""
 weight = 1
-copyright = '<a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener">CC0 1.0</a>'
+copyright = '<a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a>'
 
 # [languages.fr]
 # subtitle = "Hello Friend NG Theme"
 # weight = 2
-# copyright = '<a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener">CC0 1.0</a>'
+# copyright = '<a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a>'
 
 [menu]
 [[menu.main]]
