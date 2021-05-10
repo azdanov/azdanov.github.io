@@ -8,7 +8,7 @@ date: "2020-09-12"
 Hey! My name is Anton Ždanov and I enjoy learning and making different kinds of software in various languages, frameworks, libraries, and tools:
 
 - HTML / CSS / SCSS
-- JavaScript / TypeScript
+- JavaScript / TypeScript / Node.js
 - Java / Kotlin / Go
 - React.js / Vue.js / Angular
 - Spring (Boot, Data, Security, etc.) / Hibernate
