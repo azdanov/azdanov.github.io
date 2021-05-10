@@ -1,0 +1,8 @@
+User-agent: *
+
+Disallow: /tags/
+Disallow: /categories/
+Disallow: /series/
+Disallow: 404.html
+
+Sitemap: {{ "sitemap.xml" | absLangURL }}
