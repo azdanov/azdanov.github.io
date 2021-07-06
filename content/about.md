@@ -9,7 +9,7 @@ Hey! My name is Anton Ždanov and I enjoy learning and making different kinds of
 
 - HTML / CSS / SCSS
 - JavaScript / TypeScript
-- Java / Node.js / Go
+- Java / Node.js / SQL
 - React.js / Vue.js / Angular
 - Spring (Boot, Data, Security, etc.) / Hibernate
 - MySQL / PostgreSQL / RabbitMQ / Redis
