@@ -15,4 +15,4 @@ Hey! My name is Anton Ždanov and I enjoy learning and making apps in various la
 - MySQL / PostgreSQL / RabbitMQ / Redis
 - Docker / Kubernetes
 
-You can find me on [linkedin.com/in/thezdanov](https://www.linkedin.com/in/thezdanov), my projects on [github.com/azdanov](https://github.com/azdanov) and send me an email to [azdanov@pm.me](mailto:azdanov@pm.me).
+You can find me on [linkedin.com/in/thezdanov](https://www.linkedin.com/in/thezdanov), my projects on [github.com/azdanov](https://github.com/azdanov) and send me an email to [anton@azdanov.dev](mailto:anton@azdanov.dev).
