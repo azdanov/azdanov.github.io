@@ -153,7 +153,7 @@ logoCursorAnimate = "0s"
 # Social icons
 [[params.social]]
 name = "email"
-url = "mailto:azdanov@pm.me"
+url = "mailto:anton@azdanov.dev"
 
 [[params.social]]
 name = "github"
