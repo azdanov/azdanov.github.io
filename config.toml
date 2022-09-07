@@ -152,10 +152,6 @@ logoCursorAnimate = "0s"
 
 # Social icons
 [[params.social]]
-name = "twitter"
-url = "https://twitter.com/thezdanov"
-
-[[params.social]]
 name = "email"
 url = "mailto:azdanov@pm.me"
 
