@@ -9,10 +9,10 @@ Hey! My name is Anton Ždanov and I enjoy learning and making apps in various la
 
 - HTML / CSS / SCSS
 - JavaScript / TypeScript
-- Java / Go / Node.js / SQL
+- Java / Node.js / SQL
 - React / Vue / Angular
 - Spring (Boot, Data, Security, etc.) / Hibernate
 - MySQL / PostgreSQL / RabbitMQ / Redis
-- Docker / Kubernetes
+- Docker
 
 You can find me on [linkedin.com/in/thezdanov](https://www.linkedin.com/in/thezdanov), my projects on [github.com/azdanov](https://github.com/azdanov) and send me an email to [anton@azdanov.dev](mailto:anton@azdanov.dev).
